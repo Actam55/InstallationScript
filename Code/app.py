@@ -51,13 +51,12 @@ def InstallCustom():
         quit()
     for software in softwareList:
         if(software.name.lower() == installationChoice.lower()):
-            print("Installing", installationChoice, "...")
             gameFound = True
+            print("Installing", installationChoice, "...")
             installTimeStart = datetime.now()
             run(software.installCommand)
             installTimeTotal = datetime.now() - installTimeStart
-            print(installationChoice, "has been installed!")
-            print("Installation took", installTimeTotal.seconds, "seconds")
+            print(installationChoice, "has been installed! Installation took:", installTimeTotal.seconds, "seconds")
             print("###############")
             softwareList.remove(software)
             InstallCustom()
