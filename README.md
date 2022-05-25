@@ -9,3 +9,10 @@ This is a script used to install software on a windows machine. Intended to be u
 - Better CLI design.
 - Look at other options for installing software other than this weird ass Powershell way of doing it.
 - Some software is limited, Riot client cannot be installed as download link has not been found yet. This issue could consist with future software.
+
+
+**Software**
+- F.lux
+- Lightshot
+- Logitech G HUB
+- Steel Series GG
