@@ -1,3 +1,4 @@
+from datetime import datetime
 import subprocess
 
 class Software:
@@ -9,7 +10,6 @@ class Software:
 #Check each entry to make sure they work
 googleChrome = Software("Google Chrome", '(new-object System.Net.WebClient).DownloadFile("https://dl.google.com/chrome/install/latest/chrome_installer.exe", "c:/temp/chrome.exe");. c:/temp/chrome.exe /silent /install;')
 
-
 #discord = Software("Discord", '(new-object System.Net.WebClient).DownloadFile("https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x86", "c:/temp/discord.exe");. c:/temp/discord.exe /silent /install;')
 discord = Software("Discord", '(new-object System.Net.WebClient).DownloadFile("https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x86", "c:/temp/discord.exe");')
 
@@ -19,7 +19,8 @@ steam = Software("Steam", '(new-object System.Net.WebClient).DownloadFile("https
 
 obsidian = Software("Obsidian", '(new-object System.Net.WebClient).DownloadFile("https://github.com/obsidianmd/obsidian-releases/releases/download/v0.14.6/Obsidian.0.14.6.exe", "c:/temp/obsidian.exe");. c:/temp/obsidian.exe /silent /install;')
 
-clipStudioPaint = Software("Clip Studio Paint", '(new-object System.Net.WebClient).DownloadFile("https://www.clipstudio.net/gd?id=csp-install-win", "c:/temp/clipStudioPaint.exe");. c:/temp/clipStudioPaint.exe /silent /install;')
+#clipStudioPaint = Software("Clip Studio Paint", '(new-object System.Net.WebClient).DownloadFile("https://www.clipstudio.net/gd?id=csp-install-win", "c:/temp/clipStudioPaint.exe");. c:/temp/clipStudioPaint.exe /silent /install;')
+clipStudioPaint = Software("Clip Studio Paint", '(new-object System.Net.WebClient).DownloadFile("https://www.clipstudio.net/gd?id=csp-install-win", "c:/temp/clipStudioPaint.exe");')
 
 oneDrive = Software("OneDrive", '(new-object System.Net.WebClient).DownloadFile("https://go.microsoft.com/fwlink/p/?LinkID=2182910&clcid=0x406&culture=da-dk&country=DK", "c:/temp/oneDrive.exe");. c:/temp/oneDrive.exe /silent /install;')
 
@@ -39,18 +40,30 @@ def run(cmd):
 
 
 def InstallCustom():
+    gameFound = False
+    
+
     for software in softwareList:
         print(software.name)
-
-    installationChoice = input("Please type the name of software you wish to install: ").lower()
+    installationChoice = input("Please type the name of software you wish to install: ")
+    if(installationChoice == 'q'):
+        print("Thank you for using InstallationScript!")
+        quit()
     for software in softwareList:
-        if(software.name.lower() == installationChoice):
-            print(installationChoice, "exists")
+        if(software.name.lower() == installationChoice.lower()):
+            print("Installing", installationChoice, "...")
+            gameFound = True
+            installTimeStart = datetime.now()
             run(software.installCommand)
+            installTimeTotal = datetime.now() - installTimeStart
+            print(installationChoice, "has been installed!")
+            print("Installation took", installTimeTotal.seconds, "seconds")
+            print("###############")
             softwareList.remove(software)
-        else:
-            print(installationChoice, "does not exist, please try again")
             InstallCustom()
+    if(gameFound == False):
+        print(installationChoice, "does not exist, please try again")
+        InstallCustom()
 
 
 #This might not work as intended
