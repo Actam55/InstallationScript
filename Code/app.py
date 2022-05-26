@@ -8,32 +8,34 @@ def run(cmd):
         ["powershell", "-Command", cmd], capture_output=True)
     return completed
 
-
 def InstallCustom():
-    gameFound = False
-    
+    installationChoice = 'cock'
+    while installationChoice != 'q': 
+        gameFound = False
+        for software in softwareList:
+            print(software.name)
+        installationChoice = input("Please type the name of software you wish to install. [q] To exit: ").lower()
+        for software in softwareList:
+            if(software.name.lower() == installationChoice.lower()):
+                gameFound = True
+                print("Installing", installationChoice, "...")
+                installTimeStart = datetime.now()
+                run(software.installCommand)
+                installTimeTotal = datetime.now() - installTimeStart
+                print(installationChoice, "has been installed! Installation took:", installTimeTotal.seconds, "seconds")
+                softwareList.remove(software)
+        if(gameFound == False and installationChoice != 'q'):
+            print(installationChoice, "does not exist, please try again")
+    print("Thank you for using InstallationScript!")
+    quit()
 
+def InstallAll():
+    print("Installing...")
+    installTimeStart = datetime.now()
     for software in softwareList:
-        print(software.name)
-    installationChoice = input("Please type the name of software you wish to install: ")
-    if(installationChoice == 'q'):
-        print("Thank you for using InstallationScript!")
-        quit()
-    for software in softwareList:
-        if(software.name.lower() == installationChoice.lower()):
-            gameFound = True
-            print("Installing", installationChoice, "...")
-            installTimeStart = datetime.now()
-            run(software.installCommand)
-            installTimeTotal = datetime.now() - installTimeStart
-            print(installationChoice, "has been installed! Installation took:", installTimeTotal.seconds, "seconds")
-            print("###############")
-            softwareList.remove(software)
-            InstallCustom()
-    if(gameFound == False):
-        print(installationChoice, "does not exist, please try again")
-        InstallCustom()
-
+        run(software.installCommand)
+    installTimeTotal = datetime.now() - installTimeStart
+    print("All software has been installed! Installation took:", installTimeTotal.seconds, "seconds")
 
 #This might not work as intended
 def InstallChoco():
@@ -43,12 +45,16 @@ def InstallChoco():
 if __name__ == '__main__':
     print("Welcome to the installation script!")
     print("Please select the software you wish to install, all installations will be on the C drive and executables will be placed in the temp folder.")
-    installationChoice = input(
-        "[a] All current software -- [c] Custom selection:   ")
-
-    if(installationChoice == 'a'):
-        print("Not ready yet")
-    elif(installationChoice == 'c'):
-        print("-------------------------------------------")
-        print("A list of avaliable software will be displayed:")
-        InstallCustom()
+    userInput = 'cock'
+    while userInput != 'a' or userInput != 'c' or userInput != 'q':
+        userInput = input("[a] All current software -- [c] Custom selection -- [q] Quit:   ")
+        if(userInput == 'a'):
+            InstallAll()
+        elif(userInput == 'c'):
+            print("-------------------------------------------")
+            print("A list of avaliable software will be displayed:")
+            InstallCustom()
+        elif(userInput == 'q'):
+            print("Thank you for using InstallationScript!")
+            quit()
+        print("Incorrect input, please try again.")
