@@ -8,7 +8,7 @@ def run(cmd):
         ["powershell", "-Command", cmd], capture_output=True)
     return completed
 
-def InstallCustom():
+def InstallCustomDownloader():
     installationChoice = 'cock'
     while installationChoice != 'q': 
         gameFound = False
@@ -23,19 +23,24 @@ def InstallCustom():
                 run(software.installCommand)
                 installTimeTotal = datetime.now() - installTimeStart
                 print(installationChoice, "has been installed! Installation took:", installTimeTotal.seconds, "seconds")
+                print("-------------------------------------------")
                 softwareList.remove(software)
         if(gameFound == False and installationChoice != 'q'):
             print(installationChoice, "does not exist, please try again")
     print("Thank you for using InstallationScript!")
     quit()
 
-def InstallAll():
+def InstallAllDownloader():
     print("Installing...")
     installTimeStart = datetime.now()
     for software in softwareList:
         run(software.installCommand)
     installTimeTotal = datetime.now() - installTimeStart
     print("All software has been installed! Installation took:", installTimeTotal.seconds, "seconds")
+
+def RunInstaller():
+    run("Start-Process -FilePath 'C:\temp\chrome' -ArgumentList '\s' -PassThru")
+
 
 #This might not work as intended
 def InstallChoco():
@@ -49,11 +54,11 @@ if __name__ == '__main__':
     while userInput != 'a' or userInput != 'c' or userInput != 'q':
         userInput = input("[a] All current software -- [c] Custom selection -- [q] Quit:   ")
         if(userInput == 'a'):
-            InstallAll()
+            InstallAllDownloader()
         elif(userInput == 'c'):
             print("-------------------------------------------")
             print("A list of avaliable software will be displayed:")
-            InstallCustom()
+            InstallCustomDownloader()
         elif(userInput == 'q'):
             print("Thank you for using InstallationScript!")
             quit()
