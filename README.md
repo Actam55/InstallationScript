@@ -11,8 +11,4 @@ This is a script used to install software on a windows machine. Intended to be u
 - Some software is limited, Riot client cannot be installed as download link has not been found yet. This issue could consist with future software.
 
 
-**Software**
-- F.lux
-- Lightshot
-- Logitech G HUB
-- Steel Series GG
+**Software to add**
