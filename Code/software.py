@@ -16,6 +16,5 @@ oneDrive = Software("OneDrive", '(new-object System.Net.WebClient).DownloadFile(
 vsCode = Software("Visual Studio Code", '(new-object System.Net.WebClient).DownloadFile("https://code.visualstudio.com/Download#", "c:/temp/vsCode.exe");. c:/temp/vsCode.exe;')
 zip = Software("7-zip", '(new-object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z2200-x64.exe", "c:/temp/7zip.exe");. c:/temp/7zip.exe;')
 
-#softwareList = [googleChrome, discord, spotify, steam, obsidian, clipStudioPaint, oneDrive, vsCode, zip]
-softwareList = [googleChrome, zip]
+softwareList = [googleChrome, discord, spotify, steam, obsidian, clipStudioPaint, oneDrive, vsCode, zip]
 softwareList.sort(key=lambda x: x.name)
