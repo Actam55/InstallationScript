@@ -14,7 +14,11 @@ obsidian = Software("Obsidian", '(new-object System.Net.WebClient).DownloadFile(
 clipStudioPaint = Software("Clip Studio Paint", '(new-object System.Net.WebClient).DownloadFile("https://www.clipstudio.net/gd?id=csp-install-win", "c:/temp/clipStudioPaint.exe");. c:/temp/clipStudioPaint.exe;')
 oneDrive = Software("OneDrive", '(new-object System.Net.WebClient).DownloadFile("https://go.microsoft.com/fwlink/p/?LinkID=2182910&clcid=0x406&culture=da-dk&country=DK", "c:/temp/oneDrive.exe");. c:/temp/oneDrive.exe;')
 vsCode = Software("Visual Studio Code", '(new-object System.Net.WebClient).DownloadFile("https://code.visualstudio.com/Download#", "c:/temp/vsCode.exe");. c:/temp/vsCode.exe;')
-zip = Software("7-zip", '(new-object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z2200-x64.exe", "c:/temp/7zip.exe");. c:/temp/7zip.exe;')
+zip = Software("7-Zip", '(new-object System.Net.WebClient).DownloadFile("https://www.7-zip.org/a/7z2200-x64.exe", "c:/temp/7zip.exe");. c:/temp/7zip.exe;')
+flux = Software("Flux", '(new-object System.Net.WebClient).DownloadFile("https://justgetflux.com/dlwin.html", "c:/temp/flux.exe");. c:/temp/flux.exe;')
+lightShot = Software("Light Shot", '(new-object System.Net.WebClient).DownloadFile("https://app.prntscr.com/build/setup-lightshot.exe", "c:/temp/lightshot.exe");. c:/temp/lightshot.exe;')
+logitechGHub = Software("G Hub", '(new-object System.Net.WebClient).DownloadFile("https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe", "c:/temp/lghub.exe");. c:/temp/lghub.exe;')
+steelSeriesGG = Software("Steel Series GG", '(new-object System.Net.WebClient).DownloadFile("https://steelseries.com/gg/downloads/gg/latest/windows", "c:/temp/ssgg.exe");. c:/temp/ssgg.exe;')
 
-softwareList = [googleChrome, discord, spotify, steam, obsidian, clipStudioPaint, oneDrive, vsCode, zip]
+softwareList = [googleChrome, discord, spotify, steam, obsidian, clipStudioPaint, oneDrive, vsCode, zip, flux, lightShot, logitechGHub, steelSeriesGG]
 softwareList.sort(key=lambda x: x.name)
