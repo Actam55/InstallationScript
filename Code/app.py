@@ -23,38 +23,35 @@ def InstallCustomDownloader():
                 run(software.installCommand)
                 installTimeTotal = datetime.now() - installTimeStart
                 print(installationChoice, "has been installed! Installation took:", installTimeTotal.seconds, "seconds")
-                print("-------------------------------------------")
+                print("-------------------------------------------\n")
                 softwareList.remove(software)
         if(gameFound == False and installationChoice != 'q'):
-            print(installationChoice, "does not exist, please try again")
+            print(installationChoice, "does not exist, please try again:\n")
     print("Thank you for using InstallationScript!")
     quit()
 
 def InstallAllDownloader():
-    print("Installing...")
-    installTimeStart = datetime.now()
+    installTimeTotal = datetime.now()
     for software in softwareList:
+        installTimeStart = datetime.now()
+        print("Installing", software.name, "...")
         run(software.installCommand)
-    installTimeTotal = datetime.now() - installTimeStart
-    print("All software has been installed! Installation took:", installTimeTotal.seconds, "seconds")
-
-def RunInstaller():
-    run("Start-Process -FilePath 'C:\temp\chrome' -ArgumentList '\s' -PassThru")
-
-
-#This might not work as intended
-def InstallChoco():
-    run("Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))")
-
+        installTimeEnd = datetime.now() - installTimeStart
+        print(software.name, "has been installed! Installation took:", installTimeEnd.seconds, "seconds")
+        print("-------------------------------------------\n")
+    installTimeTotalEnd = datetime.now() - installTimeTotal
+    print("All software has been installed! Installation took:", installTimeTotalEnd.seconds, "seconds\n")
 
 if __name__ == '__main__':
     print("Welcome to the installation script!")
-    print("Please select the software you wish to install, all installations will be on the C drive and executables will be placed in the temp folder.")
+    print("Please select the software you wish to install, all installations will be on the C drive and executables will be placed in the temp folder.\n")
     userInput = 'cock'
-    while userInput != 'a' or userInput != 'c' or userInput != 'q':
+    while userInput != 'q' or userInput != 'a' or userInput != 'c':
         userInput = input("[a] All current software -- [c] Custom selection -- [q] Quit:   ")
         if(userInput == 'a'):
             InstallAllDownloader()
+            print("Thank you for using InstallationScript!")
+            quit()
         elif(userInput == 'c'):
             print("-------------------------------------------")
             print("A list of avaliable software will be displayed:")
@@ -62,4 +59,4 @@ if __name__ == '__main__':
         elif(userInput == 'q'):
             print("Thank you for using InstallationScript!")
             quit()
-        print("Incorrect input, please try again.")
+        print("Invalid input, please try again.")
