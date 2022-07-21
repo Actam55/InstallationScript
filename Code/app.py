@@ -27,6 +27,7 @@ def InstallCustomDownloader():
                 softwareList.remove(software)
         if(gameFound == False and installationChoice != 'q'):
             print(installationChoice, "does not exist, please try again:\n")
+            print("-------------------------------------------\n")
     print("Thank you for using InstallationScript!")
     quit()
 

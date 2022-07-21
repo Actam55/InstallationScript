@@ -1,4 +1,4 @@
-<h1>InstallationScript</h1>
+# InstallationScript
 
 
 This is a script used to install software on a windows machine. Intended to be used for installing all needed software on a clean installation or format
@@ -12,3 +12,8 @@ This is a script used to install software on a windows machine. Intended to be u
 
 
 **Software to add**
+- Windows Terminal
+- Python
+
+**Current known issues**
+- F.lux does not seem to download the installer correctly. Might have something to with the fact that the link is HTML or something
